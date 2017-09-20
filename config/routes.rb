@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # get 'sessions/new'
-  # post 'sessions/create'
-  # delete 'sessions/destroy'
-
   get 'home/index'
 
   resources :books
