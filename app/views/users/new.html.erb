@@ -1,0 +1,21 @@
+<h1>Register with FreeShelf:</h1>
+
+<%= render "error" %>
+
+<%= form_with scope: :user, url: users_path, local: true do |form| %>
+
+<p>
+ <%= form.label :user_name %><br />
+ <%= form.text_field :user_name %>
+</p>
+
+<p>
+ <%= form.label :password %><br />
+ <%= form.password_field :password %><br />
+</p>
+
+<p>
+ <%= form.submit %>
+</p>
+
+<% end %>
