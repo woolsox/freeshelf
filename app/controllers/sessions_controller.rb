@@ -8,10 +8,14 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to books_path
     else
-     render "new_error"
-   end
+      render 'new_error'
+    end
   end
 
   def destroy
+    session[:user_id] = nil
+    redirect_to '/'
+    reset_session
   end
+
 end

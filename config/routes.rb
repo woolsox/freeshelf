@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'logout' => "sessions#destroy"
 
   resources :books
   resources :users # add exceptions later
