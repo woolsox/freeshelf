@@ -1,17 +1,3 @@
 <h1>Log in to FreeShelf:</h1>
 
-<%= form_for(:session, url: sessions_path) do |form| %>
-
-<p>
- <%= form.label :user_name %>
- <%= form.text_field :user_name %>
-</p>
-
-<p>
- <%= form.label :password %>
- <%= form.password_field :password %>
-</p>
-
-<%= form.submit "Log in" %>
-
-<% end %>
+<%= render "form" %>

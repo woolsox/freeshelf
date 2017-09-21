@@ -3,7 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    render "new"
+    user = User.find_by(user_name: params[:session][:user_name])
+    if user && user.authenticate(params[:session][:password])
+      log_in user
+      redirect_to books_path
+    else
+     render "new_error"
+   end
   end
 
   def destroy

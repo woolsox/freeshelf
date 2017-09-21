@@ -1,0 +1,19 @@
+<%= form_for(:session, url: sessions_path) do |form| %>
+
+<p>
+ <%= form.label :user_name %>
+ <%= form.text_field :user_name %>
+</p>
+
+<p>
+ <%= form.label :password %>
+ <%= form.password_field :password %>
+</p>
+
+<%= form.submit "Log in" %>
+
+<p>
+ New user? <%= link_to "Register now!", new_user_path %>
+</p>
+
+<% end %>
