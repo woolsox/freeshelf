@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :require_login, only: [:new, :edit, :create, :update, :destroy]
+ before_action :require_login, only: %i[new edit create update destroy]
+ before_action :is_owner, only: %i[edit update destroy]
 
  def index
   @books = Book.all
@@ -19,7 +20,7 @@ class BooksController < ApplicationController
 
  def create
   @book = Book.new(book_params)
-
+  @book.user_id = current_user.id if current_user
   if @book.save
    redirect_to @book
   else
@@ -47,10 +48,15 @@ class BooksController < ApplicationController
  private
 
  def book_params
-  params.require(:book) .permit(:title, :author, :description, :link)
+  params.require(:book).permit(:title, :author, :description, :link)
  end
 
  def require_login
   redirect_to new_session_path unless logged_in?
+ end
+
+ def is_owner
+  @book = Book.find(params[:id])
+  redirect_to books_path unless @book.user_id == current_user.id
  end
 end
